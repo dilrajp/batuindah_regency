@@ -26,7 +26,7 @@
 		<header class="logo-env">			
 			<div class="logo">
 				<a href="index.html">
-					<h3 style="color:white;">BATU INDAH REGENCY</h3>
+					<h3 style="color:white;" >BATU INDAH REGENCY</h3>
 				</a>
 			</div>				
 		</header>
@@ -61,33 +61,22 @@
 						</ul>
 					</li>				
 				</ul>
-
-				<ul class="user-info pull-left pull-right-xs pull-none-xsm">			
-					<li class="notifications dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				<script type="text/javascript">
+				
+				</script>
+			<ul class="user-info pull-left pull-right-xs pull-none-xsm">			
+					<li class="notifications dropdown"  >
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="deleteNotif">
 							<i class="entypo-bell"></i>
-							<span class="badge badge-info"><?php //echo isset($isi_notifikasi) ? count($isi_notifikasi) : 0; ?></span>
+							<div id="total"></div>
 						</a>
 
-						<ul class="dropdown-menu">
-							<li class="top">
-								<p class="small">
-									Anda Punya <?php 
-									// if(count($isi_notifikasi) > 0){
-
-									// }else{
-									// 	echo "Belum";
-									// }
-									?> Notifikasi
-								</p>
-							</li>
-							<li>
-								<ul class="dropdown-menu-list scroller">
-									<?php //echo $_notifikasi; ?> 
-								</ul>
-							</li>										
+						<ul class="dropdown-menu" id="daftarpemberitahuan">
+							
 						</ul>
 					</li>
+
 				</ul>
 			</div>
 
@@ -164,6 +153,7 @@
 	<script src="<?php echo base_url('assets/templates/backend/assets/js/neon-custom.js');?>"></script>
 	<script src="<?php echo base_url('assets/templates/backend/assets/js/neon-demo.js');?>"></script>
 	<script src="<?php echo base_url('assets/templates/backend/assets/js/bootstrap-datepicker.js');?>"></script>
+	<script src="<?php echo base_url('assets/templates/backend/assets/js/bootstrap-timepicker.min.js');?>"></script>
 </body>
 </html>
 <script type="text/javascript">
@@ -172,6 +162,11 @@ $('.datepicker').datepicker({
     autoclose: true,
     format:'dd-mm-yyyy',
     //startDate: "dateToday"
+});
+$('.datepicker2').datepicker({
+    autoclose: true,
+    format:'yyyy-mm-dd',
+    startDate: "dateToday"
 });
 var responsiveHelper;
 var breakpointDefinition = {
@@ -247,3 +242,135 @@ var tableContainer;
         });
     }
 </script>
+
+	<script type="text/javascript">
+
+		loadnotification();
+
+		function loadnotification(){
+			$.ajax({
+			    url: "<?php echo base_url('Dashboard/notifikasiAgenda'); ?>",
+			    async: true,
+			    type: "POST",
+			    dataType: "json",
+			    success: function(data) {
+			        var bulan 	= ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+			        var hari	= ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+
+			        if (data.jumlah > 0) {
+			        	$("#daftarpemberitahuan").empty();
+			        	$('#total').html('	<span class="badge badge-info">'+data.jumlah+'</span>');
+			        	$('#daftarpemberitahuan').append('<li class="top"><p class="small">Anda memiliki <strong>'+data.jumlah+'</strong> Agenda Kegiatan.</p></li>');
+			        	//console.log(data.jumlah);
+			        	for (var i = 0; i < data.jumlah; i++) {
+			        	var waktuunggah	= new Date(data.agenda[i].tanggal_agenda);
+			  			var teks = 	$('<li>\
+						  				<ul class="dropdown-menu-list scroller">\
+												<li class="unread notification-info">\
+												<a href="<?php echo base_url('Agenda/daftarAgenda'); ?>">\
+																<span class="line">\
+																<strong>'+data.agenda[i].jenis_agenda+'</strong>\
+															</span>\
+															<span class="line small">\
+																Agenda kegiatan pada Hari '+hari[waktuunggah.getDay()]+", "+waktuunggah.getDate()+" "+bulan[waktuunggah.getMonth()]+" "+waktuunggah.getFullYear()+'.\
+															</span>\
+												</a>\
+													</li>\
+												</ul>\
+											</li>');
+			  		//	console.log(teks);
+				        $("#daftarpemberitahuan").append(teks);
+				    }
+			        } else {
+			        	$("#daftarpemberitahuan").empty();
+			        	$('#total').html('<span class="badge badge-white"></span>');
+			        	
+			        	var teks = 	$('<li>\
+			  				<ul class="dropdown-menu-list scroller">\
+									<li class="unread notification-info">\
+											<a href="<?php echo base_url('Agenda/daftarAgenda'); ?>">\
+												<span class="line"> Tidak Ada Agenda Baru\
+												</span>\
+											</a>\
+										</li>\
+									</ul>\
+								</li>');
+
+			        	$("#daftarpemberitahuan").append(teks);
+			        	
+			        }
+
+			    }
+		    });
+		}
+
+		setInterval(function(){ loadnotification(); }, 5000);
+		var clicks = 0;
+		var cek = 0;
+		$("#deleteNotif").click(function(e) {
+			//e.preventDefault();
+
+			if (clicks == 0){
+				
+        	// first click
+        	cek = 1;
+        	//alert(cek);
+			} else{
+				if(cek == 1){
+					//alert("test");
+					 $.ajax({
+				      type: "POST",
+				      url: "<?php echo base_url()?>Dashboard/clearNotif",
+				      cache: false,
+				      data: {}, // since, you need to delete post of particular id
+				      success: function(reaksi) {
+				         if (reaksi){
+				           // alert("Success");
+				          loadnotification();
+				         } else {
+				             //alert("ERROR");
+				          loadnotification();
+				         }
+				       }
+				       });
+				    // second click
+				    clicks = -1;
+				    cek = 0;
+				}else{
+					cek = 1;
+				}
+			}
+    		++clicks;
+
+		});
+
+		$(window).click(function(e) {
+			//e.preventDefault();
+			if (clicks == 0){
+        	// first click
+			} else{
+				if(cek == 1){
+				//alert("test");
+				 $.ajax({
+			      type: "POST",
+			      url: "<?php echo base_url()?>Dashboard/clearNotif",
+			      cache: false,
+			      data: {}, // since, you need to delete post of particular id
+			      success: function(reaksi) {
+			         if (reaksi){
+			           // alert("Success");
+			           loadnotification();
+			         } else {
+			             //alert("ERROR");
+			             loadnotification();
+			         }
+			       }
+			       });
+			    // second click
+			    clicks = -1;
+			     cek = 0;
+				}
+			}
+    		++clicks;
+		});
+	</script>

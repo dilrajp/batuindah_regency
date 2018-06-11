@@ -30,7 +30,7 @@ $config['base_url'] = 'http://localhost/batuindah_regency/';
 |
 */
 //$config['index_page'] = 'index.php';
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

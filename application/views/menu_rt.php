@@ -42,7 +42,7 @@
     </ul>
 </li>
 
-<li <?php if($menu == 'agenda'){ ?> class="active opened active" <?php } ?>>
+<li <?php if($hirarki_menu == 'agenda'){ ?> class="active opened active" <?php } ?>>
     <a href="<?php echo base_url('agenda'); ?>">
         <i class="entypo-calendar"></i>
         <span>Agenda</span>

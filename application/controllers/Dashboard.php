@@ -22,6 +22,7 @@ class Dashboard extends CI_Controller {
         $this->gallery_path = realpath(APPPATH . '../data/images/user/');
        	$this->gallery_path_url = base_url() . 'data/images/user/';
 	}
+
 	
 	public function index()
 	{
@@ -128,6 +129,48 @@ class Dashboard extends CI_Controller {
                     window.location.href='".base_url('dashboard')."';
                 </script>";
 		}
+	}
+
+	public function notifikasiAgenda(){
+		$idp =  $this->session->userdata('id_penghuni');
+		$agenda = $this->db->query("SELECT * from notifikasi_agenda join agenda on(agenda.id_agenda = notifikasi_agenda.id_agenda) WHERE id_penghuni = '$idp'");
+		$data['jumlah'] = $agenda->num_rows();
+		$data['agenda'] = $agenda->result();
+		
+		echo json_encode($data);
+	}
+
+	public function clearNotif(){
+	$idp =  $this->session->userdata('id_penghuni');
+	foreach($this->db->query("SELECT id_penghuni FROM notifikasi_agenda WHERE id_penghuni = '$idp'")->result() as $row){
+		$id = $row->id_penghuni;
+		$hapus = $this->db->delete('notifikasi_agenda', array('id_penghuni' => $id)); 
+	}
+	if($hapus){
+        echo false;
+    } else {
+        echo true;
+    }
+	}
+
+
+	public function getAgenda(){
+		
+		$res = $this->db->query("SELECT jenis_agenda,tanggal_agenda,isi_agenda FROM agenda")->result();
+		$arr = array();
+		foreach($res as $a){
+
+		$temp = array(
+             'date' => $a->tanggal_agenda,
+             'title'   =>$a->jenis_agenda,
+             'description'    => $a->isi_agenda
+         );
+		array_push($arr,$temp);
+		}
+	
+		$data =json_encode($arr);
+		echo $data;
+
 	}
 }
 

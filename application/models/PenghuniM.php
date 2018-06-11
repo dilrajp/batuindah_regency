@@ -25,6 +25,15 @@ class PenghuniM extends CI_Model {
 
         return $data->result();
 	}	
+
+	public function dataPenghuniLain()
+	{
+		$this->db->select('*');
+        $this->db->join('rumah','rumah.id_rumah = penghuni.id_rumah');
+        $this->db->join('blok','rumah.id_blok = blok.id_blok');
+        $data = $this->db->get('penghuni');
+        return $data->result();
+	}	
 	public function dataAnggota($id)
 	{
 		$this->db->select('*');

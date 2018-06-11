@@ -56,10 +56,8 @@ class UserPemakai extends CI_Controller {
 								->where('id_role !=',1)
 								->get()->result_object();
 
-		$data['peng']  		= $this->db->select('*')
-								->from('penghuni')
-								->where('is_aktif =',true)
-								->get()->result_object();
+		$data['peng']  		= $this->db->query("SELECT * FROM `penghuni`
+								WHERE NOT EXISTS (SELECT * FROM user_pemakai where penghuni.id_penghuni = user_pemakai.id_penghuni) AND penghuni.`is_aktif` = 1")->result_object();
 		$this->template->display('user_pemakai/tambah',$data);
 	}
 

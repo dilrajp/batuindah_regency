@@ -12,15 +12,15 @@
     </a>
 </li>
 
-<li <?php if($menu == 'blok'){ ?> class="active opened active" <?php } ?>>
-    <a href="<?php echo base_url('Penghuni'); ?>">
+<li <?php if($menu == 'Data Penghuni Lain'){ ?> class="active opened active" <?php } ?>>
+    <a href="<?php echo base_url('Penghuni/datapenghunilain'); ?>">
         <i class="entypo-users"></i>
         <span>Data Penghuni Lain</span>
     </a>
 </li>
 
-<li <?php if($menu == 'rumah'){ ?> class="active opened active" <?php } ?>>
-    <a href="<?php echo base_url('Agenda'); ?>">
+<li <?php if($menu == 'list agenda'){ ?> class="active opened active" <?php } ?>>
+    <a href="<?php echo base_url('Agenda/daftarAgenda'); ?>">
         <i class="entypo-calendar"></i>
         <span>Agenda Kegiatan</span>
     </a>

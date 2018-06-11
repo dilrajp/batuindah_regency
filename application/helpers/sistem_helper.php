@@ -283,3 +283,13 @@ function tanggal_indo($tanggal, $cetak_hari = false)
 	return $tgl_indo;
 }
 }
+
+if(!function_exists('jmlanggota'))
+{
+	function jmlanggota($id)
+	{
+		$CI=& get_instance();
+		$q = $CI->db->query("SELECT * FROM anggota_keluarga WHERE id_penghuni = '$id'")->num_rows();
+		return $q;
+	}
+}

@@ -56,6 +56,23 @@ class Penghuni extends CI_Controller {
 		$this->template->display('penghuni/datadiri',$data);
 	}
 
+		public function datapenghunilain($id=NULL)
+	{
+		$data['id_user']        = $this->session->userdata('id_user');
+        $data['id_penghuni']    = $this->session->userdata('id_penghuni');
+        $data['id_role']        = $this->session->userdata('id_role');
+        $data['username']       = $this->session->userdata('username');
+        $data['nama_role']      = $this->session->userdata('nama_role');
+        $data['photo']          = $this->session->userdata('photo');
+
+		$data['judulHeader'] 	= 'Data Penghuni Lain';
+		$data['hirarki_menu'] 	= 'View ';
+		$data['menu'] 			= 'Data Penghuni Lain';
+	 	
+	 	$data['data'] 	= $this->PenghuniM->dataPenghuniLain();
+		$this->template->display('penghuni/datapenghunilain',$data);
+	}
+
 	public function tambah()
 	{
 		$data['id_user']        = $this->session->userdata('id_user');

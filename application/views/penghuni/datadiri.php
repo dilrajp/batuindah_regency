@@ -140,7 +140,7 @@
                                     <td><?php echo $v->jeniskelamin; ?></td>
                                     <td><?php echo ucwords($v->tempat_lahir).', '.tanggal_indo($v->tanggal_lahir); ?></td>
                                     <td class="td-actions">
-                                        <a href="<?php echo base_url('penghuni/edit/'.$v->id_penghuni); ?>" class="btn btn-success btn-circle waves-effect waves-circle waves-float" rel="tooltip" title="Klik untuk ubah Penghuni"><i class="entypo-mail"></i></a>
+                                        <a href="#" class="btn btn-success btn-circle waves-effect waves-circle waves-float" rel="tooltip" title="Klik untuk Cetak Surat"><i class="entypo-mail"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
