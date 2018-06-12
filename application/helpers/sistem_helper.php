@@ -293,3 +293,24 @@ if(!function_exists('jmlanggota'))
 		return $q;
 	}
 }
+
+if(!function_exists('check_anggota'))
+{
+	function check_anggota($id)
+	{
+		$CI=& get_instance();
+		$q = $CI->db->query("SELECT nama FROM anggota_keluarga WHERE id_anggota = '$id'")->row('nama');
+		return $q;
+	}
+}
+
+
+if(!function_exists('check_penghuni'))
+{
+	function check_penghuni($id)
+	{
+		$CI=& get_instance();
+		$q = $CI->db->query("SELECT nama_penghuni FROM penghuni WHERE id_penghuni = '$id'")->row('nama_penghuni');
+		return $q;
+	}
+}

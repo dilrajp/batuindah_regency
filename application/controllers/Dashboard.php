@@ -37,6 +37,12 @@ class Dashboard extends CI_Controller {
 		$data['hirarki_menu'] 	= 'dashboard';
 		$data['judulHeader'] 	= '';
 
+		if(ucwords($this->session->userdata('nama_role')) == 'Penghuni'){
+			$data['data'] = array();
+		}else{
+			$data['data'] = $this->db->query("SELECT * FROM pengajuan_surat WHERE is_cetak = '0'")->result();
+		}
+
 		$this->template->display('dashboard', $data);
 	}
 

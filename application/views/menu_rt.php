@@ -50,7 +50,7 @@
 </li>
 
 <li <?php if($menu == 'pengajuan_surat'){ ?> class="active opened active" <?php } ?>>
-    <a href="<?php echo base_url('PengajuanSurat'); ?>">
+    <a href="<?php echo base_url('Surat/daftarPengajuan'); ?>">
         <i class="entypo-pencil"></i>
         <span>Pengajuan Surat</span>
     </a>

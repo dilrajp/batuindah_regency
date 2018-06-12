@@ -34,8 +34,8 @@
 </li>
 
 
-<li <?php if($menu == 'user_pemakai'){ ?> class="active opened active" <?php } ?>>
-    <a href="<?php echo base_url('PengajuanSurat'); ?>">
+<li <?php if($menu == 'pengajuan'){ ?> class="active opened active" <?php } ?>>
+    <a href="<?php echo base_url('Surat/Pengajuan'); ?>">
         <i class="entypo-list"></i>
         <span>Pengajuan Surat</span>
     </a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2018 at 10:42 AM
+-- Generation Time: Jun 12, 2018 at 07:50 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -106,14 +106,21 @@ CREATE TABLE `notifikasi_agenda` (
 
 CREATE TABLE `pengajuan_surat` (
   `id_surat` int(11) NOT NULL,
-  `id_penghuni` int(11) NOT NULL,
-  `jenis_surat` varchar(30) DEFAULT NULL,
-  `tanggal_surat` date DEFAULT NULL,
-  `isi_surat` text,
-  `penyetujuan_rt` tinyint(1) DEFAULT '0',
-  `penyetujuan_rw` tinyint(1) DEFAULT '0',
+  `id_penghuni` int(11) DEFAULT NULL,
+  `id_anggota` int(11) DEFAULT NULL,
+  `tanggal_surat` date NOT NULL,
+  `isi_surat` text NOT NULL,
+  `keterangan` text,
   `is_cetak` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengajuan_surat`
+--
+
+INSERT INTO `pengajuan_surat` (`id_surat`, `id_penghuni`, `id_anggota`, `tanggal_surat`, `isi_surat`, `keterangan`, `is_cetak`) VALUES
+(1, 1, NULL, '2018-06-12', '213', '234', 0),
+(7, 1, 1, '2018-06-12', 'xx', '321', 1);
 
 -- --------------------------------------------------------
 
@@ -253,7 +260,8 @@ ALTER TABLE `notifikasi_agenda`
 --
 ALTER TABLE `pengajuan_surat`
   ADD PRIMARY KEY (`id_surat`),
-  ADD KEY `id_penghuni` (`id_penghuni`);
+  ADD KEY `id_penghuni` (`id_penghuni`),
+  ADD KEY `id_anggota` (`id_anggota`);
 
 --
 -- Indexes for table `penghuni`
@@ -292,7 +300,7 @@ ALTER TABLE `user_pemakai`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `anggota_keluarga`
@@ -310,13 +318,13 @@ ALTER TABLE `blok`
 -- AUTO_INCREMENT for table `notifikasi_agenda`
 --
 ALTER TABLE `notifikasi_agenda`
-  MODIFY `id_notifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_notifikasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `penghuni`
@@ -363,7 +371,8 @@ ALTER TABLE `notifikasi_agenda`
 -- Constraints for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  ADD CONSTRAINT `pengajuan_surat_ibfk_1` FOREIGN KEY (`id_penghuni`) REFERENCES `penghuni` (`id_penghuni`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pengajuan_surat_ibfk_1` FOREIGN KEY (`id_penghuni`) REFERENCES `penghuni` (`id_penghuni`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pengajuan_surat_ibfk_2` FOREIGN KEY (`id_anggota`) REFERENCES `anggota_keluarga` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penghuni`
