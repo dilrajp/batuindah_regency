@@ -55,15 +55,10 @@
         <span>Pengajuan Surat</span>
     </a>
 </li>
-
-<li <?php if($hirarki_menu == 'laporan'){ ?> class="active opened active" <?php } ?>>
-    <a>
-        <i class="entypo-docs"></i>
+<li <?php if($menu == 'laporan_penduduk'){ ?> class="active opened active" <?php } ?>>
+    <a href="<?php echo base_url('Laporan'); ?>">
+        <i class="entypo-chart-area"></i>
         <span>Laporan</span>
     </a>
-    <ul>
-        <li <?php if($menu == 'laporan_penduduk'){ ?> class="active" <?php } ?>>
-            <a href="<?php echo base_url('role'); ?>"><span>Data Penduduk</span></a>
-        </li>
-    </ul>
 </li>
+

@@ -53,7 +53,6 @@ class UserPemakai extends CI_Controller {
 		$data['role']  			= $this->db->select('*')
 								->from('role')
 								->where('is_aktif =',true)
-								->where('id_role !=',1)
 								->get()->result_object();
 
 		$data['peng']  		= $this->db->query("SELECT * FROM `penghuni`
@@ -71,14 +70,7 @@ class UserPemakai extends CI_Controller {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$is_aktif  = true;
-		if($id_role != 3){
-		$object = array(
-			'id_role'=>$id_role,
-			'username'=>$username,
-			'password'=>$password,
-			'is_aktif'=>$is_aktif
-		);
-		}else{
+
 		$object = array(
 			'id_role'=> $id_role,
 			'username'=> $username,
@@ -86,7 +78,7 @@ class UserPemakai extends CI_Controller {
 			'is_aktif'=> $is_aktif,
 			'id_penghuni' => $this->input->post('id_penghuni')
 		);	
-		}
+		
 
 		$insert = $this->UserPemakaiM->insert($object);
 		

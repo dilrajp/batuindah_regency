@@ -76,8 +76,46 @@
 							
 						</ul>
 					</li>
+	<?php if(($this->session->userdata('id_role')) == '1') { ?>
+						<!-- Task Notifications -->
+					<li class="notifications dropdown">
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+							<i class="entypo-user"> </i>
+							<span class="badge-info"><b><?= ucwords($this->session->userdata('nama_role')) ?></b></span>
+						</a>
+						
+						<ul class="dropdown-menu">
+								<li class="top">
+									<p>Hak Akses</p>
+								</li>
+
+							<li>
+								<ul class="dropdown-menu-list scroller">
+								
+										<li>
+											<a href="<?php echo base_url('dashboard/penghunitort'); ?>">
+												<span class="task">
+													<span class="desc"><b>RT</b></span>
+												</span>
+											</a>
+										</li>
+										<li>
+											<a href="<?php echo base_url('dashboard/rttopenghuni'); ?>">
+												<span class="task">
+													<span class="desc"><b>Penghuni</b></span>
+												</span>
+											</a>
+										</li>
+								
+								</ul>
+							</li>
+					</ul>
+						
+					</li>
 
 				</ul>
+				<?php } ?>
 			</div>
 
 			<div class="col-md-6 col-sm-4 clearfix hidden-xs">				

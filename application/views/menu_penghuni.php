@@ -26,10 +26,10 @@
     </a>
 </li>
 
-<li <?php if($menu == 'role'){ ?> class="active opened active" <?php } ?>>
-    <a href="<?php echo base_url('KeluhanSaran'); ?>">
+<li <?php if($menu == 'organisasi'){ ?> class="active opened active" <?php } ?>>
+    <a href="<?php echo base_url('Penghuni/vieworganisasi'); ?>">
         <i class="entypo-pencil"></i>
-        <span>Keluhan dan Saran</span>
+        <span>Sistem Pemerintahan</span>
     </a>
 </li>
 

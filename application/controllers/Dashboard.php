@@ -178,6 +178,18 @@ class Dashboard extends CI_Controller {
 		echo $data;
 
 	}
+
+	public function rttopenghuni(){
+		$this->session->set_userdata('nama_role', 'Penghuni');  
+		redirect('Dashboard');
+	}
+	public function penghunitort(){
+		if(($this->session->userdata('id_role')) == '1') {
+		$this->session->set_userdata('nama_role', 'RT');  
+		}	
+		redirect('Dashboard');
+	}
+	
 }
 
 /* End of file Dashboard.php */

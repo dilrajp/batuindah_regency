@@ -4,9 +4,9 @@
 
 <div class="row">
 	<div class="col-md-12">
-    <?php if(ucwords($nama_role) == 'Penghuni'){?>
+    <?php if(ucwords($nama_role) != 'RT'){?>
 		<div class="alert alert-success">
-        	<center><strong>Selamat Datang!</strong> <b><?php echo ucwords($username);?></b> di halaman <b><?php echo ucwords($nama_role);?></b> Aplikasi Manajemen Penghuni Perumahan di Batu Indah Regency.</center>
+        	<center><strong>Selamat Datang!</strong> <b><?php echo ucwords($username);?></b> di halaman pengguna <b><?php echo ucwords($nama_role);?></b> Aplikasi Manajemen Penghuni Perumahan di Batu Indah Regency.</center>
 	    </div>
 	    <div class="alert alert-info">
 	        <center><strong>Petunjuk!</strong> Silahkan menggunakan menu yang sudah tersedia.</center>

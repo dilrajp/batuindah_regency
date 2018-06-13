@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2018 at 07:50 AM
+-- Generation Time: Jun 13, 2018 at 01:13 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -34,6 +34,15 @@ CREATE TABLE `agenda` (
   `tanggal_agenda` datetime NOT NULL,
   `isi_agenda` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `agenda`
+--
+
+INSERT INTO `agenda` (`id_agenda`, `jenis_agenda`, `tanggal_agenda`, `isi_agenda`) VALUES
+(1, 'kekeluargaan', '2018-06-14 00:00:00', '123'),
+(2, 'kekeluargaan', '2018-06-15 00:00:00', '123'),
+(3, 'kekeluargaan', '2018-04-15 00:00:00', '123');
 
 -- --------------------------------------------------------
 
@@ -83,7 +92,8 @@ CREATE TABLE `blok` (
 INSERT INTO `blok` (`id_blok`, `nama_blok`, `is_aktif`) VALUES
 (1, 'Blok A', 1),
 (2, 'Blok B', 1),
-(3, 'Blok C', 1);
+(3, 'Blok C', 1),
+(4, 'Blok D', 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +130,8 @@ CREATE TABLE `pengajuan_surat` (
 
 INSERT INTO `pengajuan_surat` (`id_surat`, `id_penghuni`, `id_anggota`, `tanggal_surat`, `isi_surat`, `keterangan`, `is_cetak`) VALUES
 (1, 1, NULL, '2018-06-12', '213', '234', 0),
-(7, 1, 1, '2018-06-12', 'xx', '321', 1);
+(7, 1, 1, '2018-07-12', 'xx', '321', 1),
+(8, 1, 1, '2018-08-08', 'xx', '321', 1);
 
 -- --------------------------------------------------------
 
@@ -219,10 +230,9 @@ CREATE TABLE `user_pemakai` (
 --
 
 INSERT INTO `user_pemakai` (`id_user_pemakai`, `id_role`, `id_penghuni`, `username`, `password`, `photo`, `is_aktif`) VALUES
-(1, 1, NULL, 'rt', 'rt', NULL, 1),
-(2, 2, NULL, 'rw', 'rw', NULL, 1),
+(1, 1, 12, 'rt', 'rt', NULL, 1),
 (3, 3, 1, 'agung', 'agung', NULL, 1),
-(4, 3, 11, 'rambo', 'rambo', NULL, 1);
+(5, 2, 11, 'rw', 'rw', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -300,7 +310,7 @@ ALTER TABLE `user_pemakai`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `anggota_keluarga`
@@ -312,7 +322,7 @@ ALTER TABLE `anggota_keluarga`
 -- AUTO_INCREMENT for table `blok`
 --
 ALTER TABLE `blok`
-  MODIFY `id_blok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_blok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `notifikasi_agenda`
@@ -324,7 +334,7 @@ ALTER TABLE `notifikasi_agenda`
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `penghuni`
@@ -348,7 +358,7 @@ ALTER TABLE `rumah`
 -- AUTO_INCREMENT for table `user_pemakai`
 --
 ALTER TABLE `user_pemakai`
-  MODIFY `id_user_pemakai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user_pemakai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

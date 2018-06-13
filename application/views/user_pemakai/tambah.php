@@ -15,7 +15,7 @@
    
     <script>
     function yesnoCheck(that) {
-        if (that.value == "3") {
+        if (that.value != "xx") {
             document.getElementById("ifYes").style.display = "block";
         } else {
             document.getElementById("ifYes").style.display = "none";
@@ -29,7 +29,7 @@
                     <label for="field-1" class="col-sm-3 control-label">Role</label>                    
                     <div class="col-sm-5">
                         <select class="form-control" name="id_role" id="id_role" required onchange="yesnoCheck(this);">
-                            <option value="">-Pilih Role-</option>
+                            <option value="xx">-Pilih Role-</option>
                             <?php foreach ($role as $i => $val) { ?>
                                 <option value="<?php echo $val->id_role; ?>"><?php echo $val->nama; ?></option>
                             <?php } ?>

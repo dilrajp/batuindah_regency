@@ -16,6 +16,31 @@ class PenghuniM extends CI_Model {
         return $data->result();
 	}
 
+	public function tampilDataRT()
+	{
+		$this->db->select('*');
+         $this->db->join('rumah','rumah.id_rumah = penghuni.id_rumah');
+        $this->db->join('blok','rumah.id_blok = blok.id_blok');
+        $this->db->join('user_pemakai','penghuni.id_penghuni = user_pemakai.id_penghuni');
+        $this->db->join('role','user_pemakai.id_role = role.id_role');
+        $this->db->where("role.nama","RT");
+        $data = $this->db->get('penghuni');
+
+        return $data->result();
+	}
+	public function tampilDataRW()
+	{
+		$this->db->select('*');
+        $this->db->join('rumah','rumah.id_rumah = penghuni.id_rumah');
+        $this->db->join('blok','rumah.id_blok = blok.id_blok');
+        $this->db->join('user_pemakai','penghuni.id_penghuni = user_pemakai.id_penghuni');
+        $this->db->join('role','user_pemakai.id_role = role.id_role');
+        $this->db->where("role.nama","RW");
+        $data = $this->db->get('penghuni');
+
+        return $data->result();
+	}
+
 	public function dataDiri($id)
 	{
 		$this->db->select('*');

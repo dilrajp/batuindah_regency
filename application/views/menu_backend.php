@@ -3,7 +3,7 @@
 <?php } ?>
 
 <?php if(($this->session->userdata('nama_role')) == 'RW') { ?>
-<?php require "menu_rw.php"; ?>
+<?php require "menu_penghuni.php"; ?>
 <?php } ?>
 
 <?php if(($this->session->userdata('nama_role')) == 'Penghuni') { ?>
